@@ -4,7 +4,7 @@ require('colors');
 // @see http://nodejs.org/api/all.html#all_require_extensions
 
 // first value of `extensions` property should be an extension the require registers
-// aliases & extensions can also be used when calling require('better-require')(formats)
+// aliases & extensions can also be used when calling require('butter-require')(formats)
 var supportedFormats = {
   'json': {
     require: 'require-json'
@@ -17,7 +17,8 @@ var supportedFormats = {
     require: 'require-csv'
   }
   , 'xml': {
-    require: 'require-xml'
+      require: 'require-xml',
+      bundled: false // butter-require removes this
   }
   , 'ini': {
     require: 'require-ini'
@@ -28,7 +29,8 @@ var supportedFormats = {
     , aliases: ['coffee-script']
   }
   , 'six': {
-    require: 'six'
+      require: 'six',
+      bundled: false // butter-require removes this
   }
   , 'clojurescript': {
     require: 'clojure-script'
@@ -82,7 +84,7 @@ module.exports = function (formats) {
     supportedFormat.install = function (filename) {
       var filename = path.basename(filename);
       return supportedFormat.name
-      + ' depends on a heavy package and better-require does not install it by default. '
+      + ' depends on a heavy package and butter-require does not install it by default. '
       + 'You need to install it by yourself before you can require ' + filename.grey + ':'
       + '\n\n'
       + ('npm install ' + supportedFormat.require  + '').blue
@@ -109,7 +111,7 @@ function requireFormat (format) {
   }
   catch (e) {
     format.extensions.forEach(function (extension) {
-      console.log(extension);
+//      console.log(extension);
       require.extensions['.' + extension] = function(module, filename) {
         var err = new Error(format.install(filename));
         throw err;

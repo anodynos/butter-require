@@ -1,3 +1,14 @@
+A fork of [better-require](https://github.com/olalonde/better-require) with less supported formats,
+mainly for usage in [uRequire](https://github.com/anodynos/uRequire) due to [some](https://github.com/olalonde/better-require/issues/3) [issues](https://github.com/olalonde/better-require/issues/2) and being *too heavy*.
+
+Formats (& dependencies) removed:
+
+- xml: who needs that anymore ? It crashes on Windows anyway...
+- six
+
+You can still manually install them of course...
+_________________________________________________________
+
 Augments require() with support for multiple file formats.
 
 # Supported file formats
