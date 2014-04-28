@@ -1,5 +1,6 @@
-A fork of [better-require](https://github.com/olalonde/better-require) with less supported formats,
-mainly for usage in [uRequire](https://github.com/anodynos/uRequire) due to [some](https://github.com/olalonde/better-require/issues/3) [issues](https://github.com/olalonde/better-require/issues/2) and being *too heavy*.
+A fork of [better-require](https://github.com/olalonde/better-require) with less supported formats, mainly for usage in [uRequire](https://github.com/anodynos/uRequire) due to [some](https://github.com/olalonde/better-require/issues/3) [issues](https://github.com/olalonde/better-require/issues/2) and being *too heavy*.
+
+v0.3 also works well with coffee-script -post & pre 1.7.x- (.coffee, .litcoffee, .coffee.md, ) & also LiveScript (.ls) & coco (.co).
 
 Formats (& dependencies) removed:
 
@@ -7,6 +8,8 @@ Formats (& dependencies) removed:
 - six
 
 You can still manually install them of course...
+
+Original docs follow:
 _________________________________________________________
 
 Augments require() with support for multiple file formats.

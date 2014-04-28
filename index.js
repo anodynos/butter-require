@@ -25,9 +25,19 @@ var supportedFormats = {
   }
   , 'coffeescript': {
     require: 'coffee-script'
-    , extensions: ['coffee']
+    , extensions: ['coffee', 'litcoffee', 'coffee.md']
     , aliases: ['coffee-script']
   }
+
+  , 'livescript': {
+    require: 'LiveScript'
+    , extensions: ['ls']
+    , aliases: ['LiveScript', 'live-script']
+  }
+  , 'coco': {
+    require: 'coco'
+    , extensions: ['co']
+    }
   , 'six': {
       require: 'six',
       bundled: false // butter-require removes this
@@ -106,15 +116,17 @@ module.exports = function (formats) {
 }
 
 function requireFormat (format) {
+  var req;
   try {
-    require(format.require);
+    req = require(format.require);
+    if ((format.require === 'coffee-script') && (req.VERSION >= '1.7.0'))
+      req.register();
   }
   catch (e) {
-    format.extensions.forEach(function (extension) {
-//      console.log(extension);
+    format.extensions.forEach(function (extension) {      
+      var extMsg = format.install('*.' + extension);
       require.extensions['.' + extension] = function(module, filename) {
-        var err = new Error(format.install(filename));
-        throw err;
+        throw new Error('butter-require error loading ' + filename + '\n' + extMsg );
       };
     });
   }
